@@ -59,7 +59,7 @@ describe('the Parser', function () {
             "Hi folks\n\n" +
             "What is the best way to clear a Riak bucket of all key, values after\n" +
             "running a test?\n" +
-            "I am currently using the Java HTTP API.\n\n";
+            "I am currently using the Java HTTP API.\n";
         var fragSignature =
             "_______________________________________________\n" +
             "riak-users mailing list\n" +
@@ -283,7 +283,7 @@ describe('the Parser', function () {
         var fragments = email.getFragments();
 
         var visibleFragments = _.filter(fragments, f => !f.isHidden());
-        var visibleText = visibleFragments.join('\n');
+        var visibleText = _.map(visibleFragments, f => f.getContent()).join('\n');
 
         assert.equal(email.getVisibleText(), visibleText, "Visible text doesn't match");
     });
@@ -330,7 +330,7 @@ describe('the Parser', function () {
 
     it('should read email with correct signature with whitespace', function () {
         var parser = new Parser();
-        var fixture = util.getFixture("correct_sig.txt").replace('--', '-- '); // we add the space here so that IDEs don't remove it accidentally
+        var fixture = util.getFixture("correct_sig.txt").replace(/--/g, '-- '); // we add the space here so that IDEs don't remove it accidentally
         var email = parser.parse(fixture);
         var fragments = email.getFragments();
 
@@ -350,7 +350,7 @@ describe('the Parser', function () {
 
     it('should read email with correct signature with no empty line above it and whitespace', function () {
         var parser = new Parser();
-        var fixture = util.getFixture("sig_no_empty_line.txt").replace('--', '-- '); // we add the space here so that IDEs don't remove it accidentally
+        var fixture = util.getFixture("correct_sig.txt").replace(/--/g, '-- '); // we add the space here so that IDEs don't remove it accidentally
         var email = parser.parse(fixture);
         var fragments = email.getFragments();
 
@@ -384,7 +384,7 @@ describe('the Parser', function () {
         var fixture = util.getFixture("email_custom_quote_header.txt");
         var email = parser.parse(fixture);
 
-        assert.equal(email.getVisibleText(), "Thank you!", "Visible text is incorrect");
+        assert.equal(email.getVisibleText(), "Thank you!\n", "Visible text is incorrect");
     });
 
     it('should use custom quote header regex when given (second)', function () {
@@ -396,13 +396,13 @@ describe('the Parser', function () {
 
         assert.equal(fragments.length, 2, 'Wrong number of fragments');
 
-        assert.equal(email.getVisibleText(), "Thank you very much", "Visible text is incorrect");
+        assert.equal(email.getVisibleText(), "Thank you very much.\n\n\n", "Visible text is incorrect");
         assert.equal(fragments[1].isHidden(), true, "Second fragment should be hidden");
         assert.equal(fragments[1].isQuoted(), true, "Second fragment should be quoted");
     });
 
     it('should use custom quote header regex when given (third)', function () {
-        var regex = [/^(De : [\S\s]+ [\S\s]+someone@yahoo[\S\s]fr\.com[\S\s]+)/m];
+        var regex = [/^(De : .+ .+someone@yahoo\.fr[\S\s]+)/m];
         var parser = new Parser(null, null, regex);
         var fixture = util.getFixture("email_customer_quote_header_3.txt");
         var email = parser.parse(fixture);
@@ -412,7 +412,7 @@ describe('the Parser', function () {
 
         var visibleText = "bonjour,\n" +
             "je n'ai pas eu de retour sur ma précision..\n" +
-            "merci d'avance";
+            "merci d'avance\n";
 
         assert.equal(email.getVisibleText(), visibleText, "Visible text is incorrect");
         assert.equal(fragments[1].isHidden(), true, "Second fragment should be hidden");
@@ -425,7 +425,7 @@ describe('the Parser', function () {
             var fixture = util.getFixture("email_with_date_headers.txt").replace('[DATE]', format);
             var email = parser.parse(fixture);
 
-            assert.equal(email.getVisibleText(), "Thank you very much", "Visible text is incorrect");
+            assert.equal(email.getVisibleText(), "Thank you very much.\n", "Visible text is incorrect");
         });
     }
 
