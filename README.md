@@ -1,5 +1,7 @@
 # node-email-reply-parser
 
+[![npm version](https://badge.fury.io/js/node-email-reply-parser.svg)](https://www.npmjs.com/package/node-email-reply-parser)
+
 A port of willdurand/EmailReplyParser (which is a port of github/email_reply_parser) to nodejs
 
 willdurand's port of the Github library supports multiple spoken languages and has some enhanced parsing and therefore was used as a template for this library.
