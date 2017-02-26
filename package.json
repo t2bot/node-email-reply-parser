@@ -1,0 +1,43 @@
+{
+  "name": "node-email-reply-parser",
+  "version": "0.0.1",
+  "description": "Parses emails to remove replies and other potentially unwanted data",
+  "author": "Travis Ralston <travis.nathaniel.ralston@gmail.com> (http://travisralston.me)",
+  "license": "MIT",
+  "homepage": "https://github.com/turt2live/node-email-reply-parser#readme",
+  "keywords": [
+    "email",
+    "parser",
+    "reply",
+    "github",
+    "signature",
+    "fragment"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turt2live/node-email-reply-parser.git"
+  },
+  "bugs": {
+    "url": "https://github.com/turt2live/node-email-reply-parser/issues"
+  },
+  "engines": {
+    "node": ">= 6.0.0"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js",
+    "lib/"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "esrever": "^0.2.0",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "mocha": "^3.2.0"
+  }
+}
