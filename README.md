@@ -1,6 +1,6 @@
 # node-email-reply-parser
 
-[![npm version](https://badge.fury.io/js/node-email-reply-parser.svg)](https://www.npmjs.com/package/node-email-reply-parser) [![TravisCI badge](https://travis-ci.org/turt2live/node-email-reply-parser.svg?branch=master)](https://travis-ci.org/turt2live/node-email-reply-parser)
+[![npm version](https://badge.fury.io/js/node-email-reply-parser.svg)](https://www.npmjs.com/package/node-email-reply-parser) [![TravisCI badge](https://travis-ci.org/turt2live/node-email-reply-parser.svg?branch=master)](https://travis-ci.org/turt2live/node-email-reply-parser) [![Greenkeeper badge](https://badges.greenkeeper.io/turt2live/node-email-reply-parser.svg)](https://greenkeeper.io/)
 
 A port of willdurand/EmailReplyParser (which is a port of github/email_reply_parser) to nodejs
 
