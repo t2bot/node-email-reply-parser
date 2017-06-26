@@ -11,6 +11,6 @@ install:
 before_script:
   - greenkeeper-lockfile-update
 script:
-  - npm run build
+  - npm test
 after_script:
   - greenkeeper-lockfile-upload
