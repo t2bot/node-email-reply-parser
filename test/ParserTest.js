@@ -419,6 +419,37 @@ describe('the Parser', function () {
         assert.equal(fragments[1].isQuoted(), true, "Second fragment should be quoted");
     });
 
+    it('should parse visible text that looks like a quote header', () => {
+        var parser = new Parser();
+        var fixture = util.getFixture("email_19.txt");
+        var email = parser.parse(fixture);
+        var fragments = email.getFragments();
+
+        assert.equal(/^On Thursday/.test(fragments[0].getContent()), true, "First fragment has wrong content");
+        assert.equal(/^On Dec 16/.test(fragments[1].getContent()), true, "Second fragment has wrong content");
+        assert.equal(/Was this/.test(fragments[1].getContent()), true, "Second fragment has wrong content");
+    });
+
+    it('should parse visible text that looks like a quote header (second)', () => {
+        var parser = new Parser();
+        var fixture = util.getFixture("email_20.txt");
+        var email = parser.parse(fixture);
+        var fragments = email.getFragments();
+
+        assert.equal(/^On Thursday/.test(fragments[0].getContent()), true, "First fragment has wrong content");
+        assert.equal(/> On May 17/.test(fragments[1].getContent()), true, "Second fragment has wrong content");
+        assert.equal(/fix this parsing/.test(fragments[1].getContent()), true, "Second fragment has wrong content");
+    });
+
+    it('should not fail with lots of content to parse', () => {
+        var parser = new Parser();
+        var fixture = util.getFixture("email_21.txt");
+        var email = parser.parse(fixture);
+        var fragments = email.getFragments();
+
+        assert.equal(/^On Thursday/.test(fragments[0].getContent()), true, "First fragment has wrong content");
+    });
+
     function testDateFormat(format) {
         it('should handle date format: ' + format, function () {
             var parser = new Parser();
