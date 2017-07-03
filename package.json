@@ -30,7 +30,8 @@
     "lib/"
   ],
   "scripts": {
-    "test": "mocha test/*Test.js"
+    "test": "mocha test/*Test.js",
+    "test:ci": "mocha test/*Test.js --reporter mocha-junit-reporter"
   },
   "dependencies": {
     "esrever": "^0.2.0",
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "assert": "^1.4.1",
-    "mocha": "^3.4.2"
+    "mocha": "^3.4.2",
+    "mocha-junit-reporter": "^1.13.0"
   }
 }
