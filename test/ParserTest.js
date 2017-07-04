@@ -31,7 +31,8 @@ const DATE_FORMATS = [
     'Test user <test@example.com> schrieb:', // German 2
     '在 2016年11月8日，下午2:23，Test user <test@example.com> 写道：', // Chinese Apple Mail iPhone parsed html
     '2016. 11. 8. 오후 12:39 Test user <test@example.com> 작성:', // Korean Apple Mail iPhone
-    '2016/11/08 14:26、Test user <test@example.com> のメッセージ:' // Japanese Apple Mail iPhone
+    '2016/11/08 14:26、Test user <test@example.com> のメッセージ:', // Japanese Apple Mail iPhone
+    "tir. 18. apr. 2017 kl. 13:09 skrev Test user <test@example.com>:", // Norwegian Gmail
 ];
 
 const FROM_HEADERS = [
@@ -277,6 +278,15 @@ describe('the Parser', function () {
     it('should handle English Outlook emails', function () {
         var parser = new Parser();
         var fixture = util.getFixture("email_18.txt");
+        var email = parser.parse(fixture);
+        var fragments = email.getFragments();
+
+        assert.equal(fragments[0].getContent().trim(), COMMON_FIRST_FRAGMENT, "Doesn't match common fragment");
+    });
+
+    it('should handle Norwegian Gmail emails', function () {
+        var parser = new Parser();
+        var fixture = util.getFixture("email_norwegian_gmail.txt");
         var email = parser.parse(fixture);
         var fragments = email.getFragments();
 
