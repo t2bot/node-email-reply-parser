@@ -474,7 +474,7 @@ describe('the Parser', function () {
             var email = parser.parse(fixture);
             var fragments = email.getFragments();
 
-            assert.equal(fragments[1].getContent(), from + "\r \r My email is <foo@example.com>", "From header not correctly matched");
+            assert.equal(fragments[1].getContent(), from + "\n\nMy email is <foo@example.com>", "From header not correctly matched");
         });
     }
 
