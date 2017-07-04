@@ -31,7 +31,15 @@ const DATE_FORMATS = [
     'Test user <test@example.com> schrieb:', // German 2
     '在 2016年11月8日，下午2:23，Test user <test@example.com> 写道：', // Chinese Apple Mail iPhone parsed html
     '2016. 11. 8. 오후 12:39 Test user <test@example.com> 작성:', // Korean Apple Mail iPhone
-    '2016/11/08 14:26、Test user <test@example.com> のメッセージ:' // Japanese Apple Mail iPhone
+    '2016/11/08 14:26、Test user <test@example.com> のメッセージ:', // Japanese Apple Mail iPhone
+    "tir. 18. apr. 2017 kl. 13:09 skrev Test user <test@example.com>:", // Norwegian Gmail
+];
+
+const FROM_HEADERS = [
+    'From: foo@example.com <foo@example.com>',
+    'De: foo@example.com <foo@example.com>',
+    'Van: foo@example.com <foo@example.com>',
+    'Da: foo@example.com <foo@example.com>',
 ];
 
 describe('the Parser', function () {
@@ -276,6 +284,15 @@ describe('the Parser', function () {
         assert.equal(fragments[0].getContent().trim(), COMMON_FIRST_FRAGMENT, "Doesn't match common fragment");
     });
 
+    it('should handle Norwegian Gmail emails', function () {
+        var parser = new Parser();
+        var fixture = util.getFixture("email_norwegian_gmail.txt");
+        var email = parser.parse(fixture);
+        var fragments = email.getFragments();
+
+        assert.equal(fragments[0].getContent().trim(), COMMON_FIRST_FRAGMENT, "Doesn't match common fragment");
+    });
+
     it('should return only visible fragments in getVisibleText()', function () {
         var parser = new Parser();
         var fixture = util.getFixture("email_2_1.txt");
@@ -418,6 +435,52 @@ describe('the Parser', function () {
         assert.equal(fragments[1].isHidden(), true, "Second fragment should be hidden");
         assert.equal(fragments[1].isQuoted(), true, "Second fragment should be quoted");
     });
+
+    it('should parse visible text that looks like a quote header', function () {
+        var parser = new Parser();
+        var fixture = util.getFixture("email_19.txt");
+        var email = parser.parse(fixture);
+        var fragments = email.getFragments();
+
+        assert.equal(/^On Thursday/.test(fragments[0].getContent()), true, "First fragment has wrong content");
+        assert.equal(/^On Dec 16/.test(fragments[1].getContent()), true, "Second fragment has wrong content");
+        assert.equal(/Was this/.test(fragments[1].getContent()), true, "Second fragment has wrong content");
+    });
+
+    it('should parse visible text that looks like a quote header (second)', function () {
+        var parser = new Parser();
+        var fixture = util.getFixture("email_20.txt");
+        var email = parser.parse(fixture);
+        var fragments = email.getFragments();
+
+        assert.equal(/^On Thursday/.test(fragments[0].getContent()), true, "First fragment has wrong content");
+        assert.equal(/> On May 17/.test(fragments[1].getContent()), true, "Second fragment has wrong content");
+        assert.equal(/fix this parsing/.test(fragments[1].getContent()), true, "Second fragment has wrong content");
+    });
+
+    it('should not fail with lots of content to parse', function () {
+        var parser = new Parser();
+        var fixture = util.getFixture("email_21.txt");
+        var email = parser.parse(fixture);
+        var fragments = email.getFragments();
+
+        assert.equal(/^On Thursday/.test(fragments[0].getContent()), true, "First fragment has wrong content");
+    });
+
+    function testFromQuoteHeader(from) {
+        it('should handle quoted headers with the From address: ' + from, function () {
+            var parser = new Parser();
+            var fixture = util.getFixture("email_with_from_headers.txt").replace("[FROM]", from);
+            var email = parser.parse(fixture);
+            var fragments = email.getFragments();
+
+            assert.equal(fragments[1].getContent(), from + "\n\nMy email is <foo@example.com>", "From header not correctly matched");
+        });
+    }
+
+    for (var from of FROM_HEADERS) {
+        testFromQuoteHeader(from);
+    }
 
     function testDateFormat(format) {
         it('should handle date format: ' + format, function () {
