@@ -2,7 +2,6 @@
 
 [![npm version](https://badge.fury.io/js/node-email-reply-parser.svg)](https://www.npmjs.com/package/node-email-reply-parser)
 [![TravisCI badge](https://travis-ci.org/turt2live/node-email-reply-parser.svg?branch=master)](https://travis-ci.org/turt2live/node-email-reply-parser)
-[![Greenkeeper badge](https://badges.greenkeeper.io/turt2live/node-email-reply-parser.svg)](https://greenkeeper.io/)
 [![Targeted for next release](https://badge.waffle.io/turt2live/node-email-reply-parser.png?label=sorted&title=Targeted+for+next+release)](https://waffle.io/turt2live/waffle-matrix?utm_source=badge)
 [![WIP](https://badge.waffle.io/turt2live/node-email-reply-parser.png?label=wip&title=WIP)](https://waffle.io/turt2live/waffle-matrix?utm_source=badge)
 [![Donate on Gratipay](https://img.shields.io/gratipay/node-email-reply-parser.svg)](https://gratipay.com/node-email-reply-parser/)
