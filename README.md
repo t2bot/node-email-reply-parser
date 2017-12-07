@@ -27,10 +27,10 @@ npm install node-email-reply-parser
 ```
 var replyParser = require("node-email-reply-parser");
 
-$email = replyParser($emailContent);
+var email = replyParser(emailContent);
 ```
 
-`$email` has two primary methods:
+`email` has two primary methods:
 * `getFragments()`: returns all the fragments of the email
 * `getVisibleText()`: returns the text that is considered 'visible'
 
