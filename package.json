@@ -29,6 +29,7 @@
     "index.js",
     "lib/"
   ],
+  "types": "index.d.ts",
   "scripts": {
     "test": "mocha test/*Test.js",
     "test:ci": "mocha test/*Test.js --reporter mocha-junit-reporter"
