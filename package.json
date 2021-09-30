@@ -1,6 +1,6 @@
 {
   "name": "node-email-reply-parser",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Parses emails to remove replies and other potentially unwanted data",
   "author": "Travis Ralston <travis@t2bot.io>",
   "license": "MIT",
