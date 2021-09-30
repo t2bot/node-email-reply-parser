@@ -34,6 +34,7 @@ const DATE_FORMATS = [
     '2016. 11. 8. 오후 12:39 Test user <test@example.com> 작성:', // Korean Apple Mail iPhone
     '2016/11/08 14:26、Test user <test@example.com> のメッセージ:', // Japanese Apple Mail iPhone
     "tir. 18. apr. 2017 kl. 13:09 skrev Test user <test@example.com>:", // Norwegian Gmail
+    "El 19/03/2014 11:34, Juan Pérez <juan.perez@mailcatch.com> ha escrit:", // Gmail in catalan
 ];
 
 const FROM_HEADERS = [
