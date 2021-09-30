@@ -30,6 +30,16 @@ var email = replyParser(emailContent);
 * `getFragments()`: returns all the fragments of the email
 * `getVisibleText()`: returns the text that is considered 'visible'
 
+`getVisibleText()` accepts an optional options object:
+
+```
+getVisibleText({aggressive: true})
+```
+
+Setting `aggressive` to true will make the parser assume that any fragment which is not hidden, but which is both preceded and followed by a hidden fragment, should not be visible. This works around the issue of clients breaking quoted text into multiple lines (e.g. Gmail). 
+
+Using aggressive mode runs the risk of losing visible lines which are interspersed with quoted lines, but is useful when parsing e.g. emails from a 'reply by email' feature which contain a large block of quoted text.
+
 A fragment has the following functions:
 * `getContent()`: returns the content of the fragment
 * `isSignature()`: returns whether or not the fragment is likely a signature
