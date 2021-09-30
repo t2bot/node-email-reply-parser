@@ -27,6 +27,7 @@
     "LICENSE",
     "README.md",
     "index.js",
+    "index.d.ts",
     "lib/"
   ],
   "types": "index.d.ts",
