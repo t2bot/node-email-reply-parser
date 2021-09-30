@@ -2,9 +2,9 @@
   "name": "node-email-reply-parser",
   "version": "0.1.1",
   "description": "Parses emails to remove replies and other potentially unwanted data",
-  "author": "Travis Ralston <travis.nathaniel.ralston@gmail.com> (http://travisralston.me)",
+  "author": "Travis Ralston <travis@t2bot.io>",
   "license": "MIT",
-  "homepage": "https://github.com/turt2live/node-email-reply-parser#readme",
+  "homepage": "https://github.com/t2bot/node-email-reply-parser#readme",
   "keywords": [
     "email",
     "parser",
@@ -15,13 +15,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/turt2live/node-email-reply-parser.git"
+    "url": "git+https://github.com/t2bot/node-email-reply-parser.git"
   },
   "bugs": {
-    "url": "https://github.com/turt2live/node-email-reply-parser/issues"
+    "url": "https://github.com/t2bot/node-email-reply-parser/issues"
   },
   "engines": {
-    "node": ">= 6.0.0"
+    "node": ">= 14.0.0"
   },
   "files": [
     "LICENSE",
@@ -37,11 +37,11 @@
   },
   "dependencies": {
     "esrever": "^0.2.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "assert": "^1.4.1",
-    "mocha": "^3.4.2",
-    "mocha-junit-reporter": "^1.13.0"
+    "assert": "^2.0.0",
+    "mocha": "^9.1.2",
+    "mocha-junit-reporter": "^2.0.0"
   }
 }

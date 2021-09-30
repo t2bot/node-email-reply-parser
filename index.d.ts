@@ -8,7 +8,13 @@ declare module "node-email-reply-parser" {
   }
   interface Email {
     getFragments(): Fragment[];
-    getVisibleText(): string;
+    getVisibleText(options?: {
+      /**
+       * When true, treats non-hidden fragments surrounded by hidden fragments as hidden.
+       * Default false.
+       */
+      aggressive?: boolean;
+    } = {}): string;
   }
   const replyParser: (emailContent: string) => Email;
   export = replyParser;

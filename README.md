@@ -15,7 +15,7 @@ This package can be found on [npm](https://www.npmjs.com/):
 npm install node-email-reply-parser
 ```
 
-**Note**: This package is ES6 compatible and does *not* transpile automatically. 
+**Note**: This package is ES6 compatible and does *not* transpile automatically.
 
 
 # Usage
@@ -36,7 +36,7 @@ var email = replyParser(emailContent);
 getVisibleText({aggressive: true})
 ```
 
-Setting `aggressive` to true will make the parser assume that any fragment which is not hidden, but which is both preceded and followed by a hidden fragment, should not be visible. This works around the issue of clients breaking quoted text into multiple lines (e.g. Gmail). 
+Setting `aggressive` to true will make the parser assume that any fragment which is not hidden, but which is both preceded and followed by a hidden fragment, should not be visible. This works around the issue of clients breaking quoted text into multiple lines (e.g. Gmail).
 
 Using aggressive mode runs the risk of losing visible lines which are interspersed with quoted lines, but is useful when parsing e.g. emails from a 'reply by email' feature which contain a large block of quoted text.
 
@@ -68,7 +68,7 @@ On <date>, <author> wrote:
 They also aren't picked up if the email client breaks it up into multiple lines, like gmail and it's 80 column automatic limit:
 ```
 On <date>, <author>
-wrote: 
+wrote:
 > blah
 ```
 
