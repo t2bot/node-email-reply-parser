@@ -23,6 +23,7 @@ const DATE_FORMATS = [
     '2014-03-09 20:48 GMT+01:00 Rémi Dolan <do_not_reply@dolan.com>:', // Gmail
     'Le 19 mars 2014 10:37, Cédric Lombardot <cedric.lombardot@gmail.com> a écrit :', // Gmail
     'El 19/03/2014 11:34, Juan Pérez <juan.perez@mailcatch.com> escribió:', // Gmail in spanish
+    'Em ter., 01 de mar. de 2011 às 18:02, Abhishek <juan.perez@mailcatch.com> escreveu:', // Gmail in PT-BR
     'W dniu 7 stycznia 2015 15:24 użytkownik Paweł Brzoski <pbrzoski91@gmail.com> napisał:', //Gmail in polish
     'Le 19/03/2014 11:34, Georges du chemin a écrit :', // Thunderbird
     'W dniu 2015-01-07 14:23, pbrzoski91@gmail.com pisze: ', // Thunderbird in polish
