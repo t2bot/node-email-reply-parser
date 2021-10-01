@@ -14,8 +14,10 @@ declare module "node-email-reply-parser" {
        * Default false.
        */
       aggressive?: boolean;
-    } = {}): string;
+    }): string;
   }
-  const replyParser: (emailContent: string) => Email;
+  type ReplyParserRegular = (emailContent: string) => Email;
+  type ReplyParserVisibleTextOnly = (emailContent: string, visibleTextOnly: true) => string;
+  const replyParser: ReplyParserRegular & ReplyParserVisibleTextOnly;
   export = replyParser;
 }
