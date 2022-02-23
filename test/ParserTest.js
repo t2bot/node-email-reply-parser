@@ -449,6 +449,17 @@ describe('the Parser', function () {
         assert.equal(/Was this/.test(fragments[1].getContent()), true, "Second fragment has wrong content");
     });
 
+    it('should parse an email where the quote header does not have a preceeding empty line', function () {
+        var parser = new Parser();
+        var fixture = util.getFixture("email_quote_header_without_new_line.txt");
+        var email = parser.parse(fixture);
+        var fragments = email.getFragments();
+
+        assert.equal(/^ Gran Via, 1, 28004, Madrid$/.test(email.getVisibleText()), true)
+        assert.equal(/^ Gran Via, 1, 28004, Madrid/.test(fragments[0].getContent()), true, "First fragment has wrong content");
+        assert.equal(/^    On Wednesday, 23 February 2022/.test(fragments[1].getContent()), true, "Second fragment has wrong content");
+    });
+
     it('should parse visible text that looks like a quote header (second)', function () {
         var parser = new Parser();
         var fixture = util.getFixture("email_20.txt");
