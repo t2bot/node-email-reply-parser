@@ -439,6 +439,24 @@ describe('the Parser', function () {
         assert.equal(fragments[1].isQuoted(), true, "Second fragment should be quoted");
     });
 
+    it('should parse an email containing **visible** quoted text', function () {
+        var parser = new Parser();
+        var fixture = util.getFixture("email_with_quoted_text.txt");
+        var email = parser.parse(fixture);
+        var visibleText = email.getVisibleText();
+        var fragments = email.getFragments();
+
+        var expectedText = `here you go:
+> const x = 1;
+what do you think?
+`
+        assert.equal(visibleText, expectedText, "The visible content is not right");
+        assert.equal(/^here you go:$/.test(fragments[0].getContent()), true, "First fragment has wrong content");
+        assert.equal(/^> const x = 1;$/.test(fragments[1].getContent()), true, "Second fragment has wrong content");
+        assert.equal(/^what do you think?/.test(fragments[2].getContent()), true, "Third fragment has wrong content");
+        assert.equal(/good morning, sure why not/.test(fragments[3].getContent()), true, "Fourth fragment has wrong content");
+    });
+
     it('should parse visible text that looks like a quote header', function () {
         var parser = new Parser();
         var fixture = util.getFixture("email_19.txt");
@@ -450,7 +468,7 @@ describe('the Parser', function () {
         assert.equal(/Was this/.test(fragments[1].getContent()), true, "Second fragment has wrong content");
     });
 
-    it('should parse an email where the quote header does not have a preceeding empty line', function () {
+    it('should parse an email where the quote header does not have a preceding empty line', function () {
         var parser = new Parser();
         var fixture = util.getFixture("email_quote_header_without_new_line.txt");
         var email = parser.parse(fixture);
